@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Fira Sans', 'PingFang TC', 'Noto Sans TC', system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+  --color-brand-50: #edf7ff;
+  --color-brand-100: #d8edff;
+  --color-brand-200: #b9ddff;
+  --color-brand-300: #83c7ff;
+  --color-brand-400: #45a7ff;
+  --color-brand-500: #1689ff;
+  --color-brand-600: #0877f9;
+  --color-brand-700: #075ed1;
+  --color-brand-800: #0b4fa9;
+  --color-brand-900: #0d4485;
+  --color-ink-950: #071426;
+  --color-ink-900: #0c1b2f;
+  --color-ink-800: #14263d;
+  --color-ink-700: #243a55;
+  --color-surface: #f5f8fc;
+  --color-line: #dfe7f1;
+  --color-safety-50: #fff7ed;
+  --color-safety-100: #ffedd5;
+  --color-safety-500: #f97316;
+  --color-safety-600: #ea580c;
+  --shadow-card: 0 1px 2px rgba(7, 20, 38, 0.03), 0 8px 24px rgba(7, 20, 38, 0.05);
+  --shadow-float: 0 20px 60px rgba(7, 20, 38, 0.16);
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #0c1b2f;
+  background: #f5f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 72% -10%, rgba(22, 137, 255, 0.09), transparent 24rem),
+    #f5f8fc;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(8, 119, 249, 0.34);
+  outline-offset: 2px;
+}
+
+::selection {
+  color: white;
+  background: #0877f9;
+}
+
+.data-grid {
+  background-image:
+    linear-gradient(rgba(8, 119, 249, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 119, 249, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scrollbar-thin {
+  scrollbar-color: #b9c8d9 transparent;
+  scrollbar-width: thin;
+}
+
+.live-pulse {
+  position: relative;
+}
+
+.live-pulse::after {
+  position: absolute;
+  inset: -4px;
+  content: '';
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  animation: live-ping 2s ease-out infinite;
+}
+
+@keyframes live-ping {
+  0% { opacity: 0.7; transform: scale(0.8); }
+  80%, 100% { opacity: 0; transform: scale(1.8); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-toast {
+  animation: toast-in 220ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
