@@ -8,6 +8,11 @@
       content="Fearyn.ai 多模態 AI 加工監測平台，讓每一台機台的風險與效率都清楚可見。"
     />
     <meta name="theme-color" content="#071426" />
+    <script>
+      if (location.hostname === 'dashboard.fearyn.com' && location.protocol !== 'https:') {
+        location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`)
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Fearyn Console｜AI 加工智慧中樞</title>
   </head>

@@ -55,6 +55,8 @@ export default function LoginPage() {
         return
       }
       navigate(destination, { replace: true })
+    } catch {
+      setErrors({ form: '登入驗證無法完成，請重新整理後再試' })
     } finally {
       setIsSubmitting(false)
     }

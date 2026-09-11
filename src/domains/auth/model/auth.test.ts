@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { loginSchema } from '@/domains/auth/model/auth.schema'
 import { useAuthStore } from '@/domains/auth/model/auth.store'
@@ -37,5 +37,20 @@ describe('demo authentication', () => {
 
     useAuthStore.getState().logout()
     expect(useAuthStore.getState().isAuthenticated).toBe(false)
+  })
+
+  it('still authenticates when a mobile browser blocks session storage writes', async () => {
+    const storageSpy = vi
+      .spyOn(Storage.prototype, 'setItem')
+      .mockImplementation(() => { throw new DOMException('Storage blocked') })
+
+    const authenticated = await useAuthStore.getState().login({
+      email: 'viiccwen@gmail.com',
+      password: '123456',
+    })
+
+    expect(authenticated).toBe(true)
+    expect(useAuthStore.getState().isAuthenticated).toBe(true)
+    storageSpy.mockRestore()
   })
 })
